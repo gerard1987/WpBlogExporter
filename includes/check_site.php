@@ -33,10 +33,10 @@ class check_site
                 // echo 'Site one and User_site Match !';
                 // Blogone
                 $db_object = (object) [
-                    'db_host' => '185.182.59.41',
-                    'db_user' => 'advanxi310_wp42',
-                    'db_pass' => 'Sa(r67D1p!',
-                    'db_name' => 'advanxi310_wp42',
+                    'db_host' => '101.101.10.10',
+                    'db_user' => 'database_user',
+                    'db_pass' => 'database_pass',
+                    'db_name' => 'database_name',
                     'db_port' => '3306',
                     'db_prefix' => 'wpv5_'
                 ];             
@@ -45,10 +45,10 @@ class check_site
                 // echo 'site_two and User_site Match !';
                 // Blogtwo
                 $db_object = (object) [
-                    'db_host' => '185.182.59.41',
-                    'db_user' => 'advanxi310_wp865',
-                    'db_pass' => '5Stm-46p-0',
-                    'db_name' => 'advanxi310_wp865',
+                    'db_host' => '101.101.10.10',
+                    'db_user' => 'database_user',
+                    'db_pass' => 'database_pass',
+                    'db_name' => 'database_name',
                     'db_port' => '3306',
                     'db_prefix' => 'wpmt_'
                 ];
@@ -57,10 +57,10 @@ class check_site
                 // echo 'site_three and User_site Match !';
                 // Blogthree
                 $db_object = (object) [
-                    'db_host' => '185.182.59.41',
-                    'db_user' => 'advanxi310_wp742',
-                    'db_pass' => ']7P1XSpp1.',
-                    'db_name' => 'advanxi310_wp742',
+                    'db_host' => '101.101.10.10',
+                    'db_user' => 'database_user',
+                    'db_pass' => 'database_pass',
+                    'db_name' => 'database_name',
                     'db_port' => '3306',
                     'db_prefix' => 'wp8i_'
                 ];
@@ -69,10 +69,10 @@ class check_site
                 // echo 'site_four and User_site Match !';
                 // Blogfour
                 $db_object = (object) [
-                    'db_host' => '185.182.59.41',
-                    'db_user' => 'advanxi310_test',
-                    'db_pass' => 'YicxTHakw',
-                    'db_name' => 'advanxi310_test',
+                    'db_host' => '101.101.10.10',
+                    'db_user' => 'database_user',
+                    'db_pass' => 'database_pass',
+                    'db_name' => 'database_name',
                     'db_port' => '3306',
                     'db_prefix' => 'wp_'
                 ];

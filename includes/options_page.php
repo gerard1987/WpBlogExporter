@@ -1,14 +1,14 @@
 <?php
 /**
- * Create user interface..
+ * Creates a user interface in the wp admin menu
  */
 class options_page 
 {
 	// Constants
-	const site_one = 'thelocksmith';
-	const site_two = 'sloten-webshop';
-	const site_three = 'deslotenexpert';
-	const site_four = 'slotenmakerbelgie';
+	const site_one = 'blogone';
+	const site_two = 'blogtwo';
+	const site_three = 'blogthree';
+	const site_four = 'blogfour';
 
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
@@ -17,10 +17,10 @@ class options_page
 
 	function admin_menu() {
 		add_options_page(
-			'Blogpub',
-			'blogPub options',
+			'wp blog exporter',
+			'wp_blog_exporter options',
 			'manage_options',
-			'blogpub',
+			'wp_blog_exporter',
 			array(		
 				$this,
 				'settings_page'
@@ -28,19 +28,23 @@ class options_page
 		);
 	}
 	
+	/**
+	 * Creates user form in the admin menu.
+	 * @TODO create seperate form class for changeability.
+	 */
 	function  settings_page() {
 
 		$options_page = new options_page();
 	
 		$content = '';
-		$editor_id = 'blogpubeditor';
+		$editor_id = 'wp_blog_exporter_editor';
 		
 		// Get category list
 		$category_list = new category_list();
 		$category_list = $category_list->get_cat_list();
 		
 		echo 	'
-				<form id="blogPub_options" method="post" action="" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center;">
+				<form id="wp_blog_exporter_options" method="post" action="" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center;">
 		 	
 					<h1>Please upload your blog</h1>
 					<label style="width:100%;">Text version of youre blog</label><br>
@@ -74,7 +78,7 @@ class options_page
 				';
 
 				wp_editor( $content, $editor_id, $settings = array('textarea_rows'=> '10') );
-				$_POST['blogpubeditor'];
+				$_POST['wp_blog_exporter_editor'];
 
 		echo 	'
 					<input type="submit" name="button" value="Submit" style="width:100%;"/>

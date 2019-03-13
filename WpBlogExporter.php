@@ -2,7 +2,8 @@
 /*
 Plugin Name:  WpBlogExporter
 Plugin URI:   https://gerard1987.github.io/
-Description:  Creates a blog post on the user input, injects it in local and external database. And posts automatically. 
+Description:  Creates a blog post with the user input, inserts the post in the local and target site database. 
+              Appends or creates category for the post, creates user for the author, or appends the post to existing user.
 Version:      0.1
 Author:       Gerard de Way
 Author URI:   https://gerard1987.github.io/
@@ -16,9 +17,9 @@ Shortcode Syntax: Default:[textload] || [textload type="textone"] || [textload t
 // Plugin updater
 require 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://github.com/user-name/repo-name/',
+	'https://github.com/gerard1987/WpBlogExporter.git',
 	__FILE__,
-	'unique-plugin-or-theme-slug'
+	'WpBlogExporter'
 );
 
 // Plugin registration
@@ -32,13 +33,12 @@ $plugin_dir = plugin_dir_path( __FILE__ );
 include_once $plugin_dir . 'includes/options_page.php';
 include_once $plugin_dir . 'includes/check_site.php';
 include_once $plugin_dir . 'includes/insert_post.php';
-include_once $plugin_dir . 'includes/db_retrieve_data.php';
+include_once $plugin_dir . 'includes/db_write_post_data.php';
 include_once $plugin_dir . 'includes/category_list.php';
 
 require_once( wp_normalize_path(ABSPATH).'wp-load.php');
 
 /**
- * @param wp_blog_exporter
  * Init functionality if user is logged in
  */
 class wp_blog_exporter
@@ -54,7 +54,7 @@ class wp_blog_exporter
 
         $options_page = new options_page();
 
-        // actions
+        // Check if user is logged in
         add_action('init', function(){
             $this-> is_user_logged_in = is_user_logged_in();
             

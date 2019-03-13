@@ -1,0 +1,8 @@
+{
+	"name" : "WpBlogExporter",
+	"version" : "0.1",
+	"download_url" : "https://github.com/gerard1987/WpBlogExporter.git",
+	"sections" : {
+		"description" : "Publish your blog all over the world!"
+	}
+}

@@ -1,7 +1,7 @@
 <?php
 /**
  * Checks wich site has been selected, gets appropriate host database data, and stores this in db_object
- * @TODO Create admin area for user, where custom db hosts can be added, thrue admin option page
+ * @TODO Create admin area for user, where custom db hosts can be added, through admin option page
  */
 class check_site
 {
@@ -31,7 +31,7 @@ class check_site
         {
             case $site_one:
                 // echo 'Site one and User_site Match !';
-                // The Locksmith
+                // Blogone
                 $db_object = (object) [
                     'db_host' => '185.182.59.41',
                     'db_user' => 'advanxi310_wp42',
@@ -43,7 +43,7 @@ class check_site
                 break;
             case $site_two:
                 // echo 'site_two and User_site Match !';
-                // sloten-webshop 
+                // Blogtwo
                 $db_object = (object) [
                     'db_host' => '185.182.59.41',
                     'db_user' => 'advanxi310_wp865',
@@ -55,7 +55,7 @@ class check_site
                 break;
             case $site_three:
                 // echo 'site_three and User_site Match !';
-                // deslotenexpert
+                // Blogthree
                 $db_object = (object) [
                     'db_host' => '185.182.59.41',
                     'db_user' => 'advanxi310_wp742',
@@ -67,7 +67,7 @@ class check_site
                 break;
             case $site_four:
                 // echo 'site_four and User_site Match !';
-                // Slotenmaker belgie
+                // Blogfour
                 $db_object = (object) [
                     'db_host' => '185.182.59.41',
                     'db_user' => 'advanxi310_test',

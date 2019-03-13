@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Connect to local DB and get post and category info. Insert in a external site db defined by user.
+ * Connects to local DB and retrieve post and category data. Inserts in a external target site db defined by user.
  */
-class db_retrieve_data 
+class db_write_post_data 
 {
 
     /**
@@ -23,7 +23,7 @@ class db_retrieve_data
     }
 
     /**
-     * Create connection to external server based on user input.
+     * Create connection to the db of the external server, that is defined by user input.
      * Insert post and category info into taxonomy tables into ext database, and connect the two together. 
      */
     function connect_to_ext_serv($results, $user_site, $db_object, $results_terms, $results_term_tax, $results_users, $user_inserted_id, $new_post, $results_usersmeta ){
@@ -44,7 +44,7 @@ class db_retrieve_data
         $term_taxonomy_prefix = PREFIX . 'term_taxonomy';
         $term_relationships_prefix = PREFIX . 'term_relationships';    
         
-        // Store blogPub local table results in arrays
+        // Store wp_blog_exporter local table results in arrays
         $post_array = $results;
         $user_array = $results_users;
         $usermeta_array =$results_usersmeta;
@@ -53,7 +53,7 @@ class db_retrieve_data
 
         $local_cat_name = $new_post['post_category'][0];
 
-        // Get blogPub local category terms
+        // Get wp_blog_exporter local category terms
         foreach ($terms_array as $item) {
             if (trim($item->name) === trim($local_cat_name)){
                 $term_id = $item->term_id;
@@ -68,7 +68,7 @@ class db_retrieve_data
 
         $name = mb_convert_encoding($name, "HTML-ENTITIES", 'UTF-8');
 
-        // Get the blogPub term_taxonomy for the terms item
+        // Get the wp_blog_exporter term_taxonomy for the terms item
         foreach ($term_taxonomy as $item){
             // Get current term id
             if ($term_id === $item->term_taxonomy_id){
@@ -106,10 +106,10 @@ class db_retrieve_data
          * Create usermeta variables, for assigning role to user
          */
         global $wpdb;
-        $blogpub_prefix = $wpdb->prefix;
+        $wp_blog_exporter_prefix = $wpdb->prefix;
         
         foreach ($usermeta_array as $item){
-            if ( $item->user_id == $author_id && ($item->meta_key) == ($blogpub_prefix . 'capabilities') ){
+            if ( $item->user_id == $author_id && ($item->meta_key) == ($wp_blog_exporter_prefix . 'capabilities') ){
                 $usermeta_umeta_id = $item->umeta_id;
                 $usermeta_user_id = $item->user_id;
                 $usermeta_meta_key = PREFIX . 'capabilities';

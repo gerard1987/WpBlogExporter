@@ -1,6 +1,6 @@
 <?php
 /**
- * Import wp post
+ * Inserts wp post and category into the local database, creates a user.
  */
 class insert_post
 {
@@ -67,7 +67,7 @@ class insert_post
 		return $user_created_id;
 	}
 
-	// Gets $_POST from blogpub, to avoid executing more than once
+	// Gets $_POST from wp_blog_exporter, to avoid executing more than once
 	public function create_post($data){
 		$running = false;
 		// Get input
@@ -79,7 +79,7 @@ class insert_post
 			$blog_title = $data['blog_title'];
 			$blog_category = $data['blog_category'];
 			$user_site = $data['blog_sites'];
-			$user_input = $data['blogpubeditor'];
+			$user_input = $data['wp_blog_exporter_editor'];
 
 			// Check user input
 			$user_sanitize = wp_kses_post($user_input);
@@ -104,15 +104,16 @@ class insert_post
 		}
 		if (isset($post_id) && $running === true){
 
-				// Redirect user, scripts runs after this.
-				// $url = admin_url('blogpub');
+				// Redirect user, scripts runs after this. Comment this out for testing.
+				// $url = admin_url('wp_blog_exporter');
 				// wp_redirect($url);
 
+				// Create a db object of user selected site to send to db_write_post_data
 				$check_site = new check_site();
 				$db_object = $check_site->user_defined_site($user_site);
 
-				$db_retrieve_data = new db_retrieve_data();
-				$db_retrieve_data->connect_to_db($user_site, $db_object, $user_inserted_id, $new_post);
+				$db_write_post_data = new db_write_post_data();
+				$db_write_post_data->connect_to_db($user_site, $db_object, $user_inserted_id, $new_post);
 
 				$is_running = false;
 
